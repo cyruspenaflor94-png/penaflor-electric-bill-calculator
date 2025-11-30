@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recovery Password</title>
+    <link rel="stylesheet" href="recovery.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="title">Recovery Password</h1>
+
+        <label class="label">Email address/Phone Number</label>
+        <input class="input-field" id="recoverInput" type="text" placeholder="Enter your email/number">
+
+        <button class="recover-btn" onclick="recover()">Recover Password</button>
+
+        <img src="unnamed.png" class="logo" alt="Logo">
+    </div>
+
+<script>
+function recover() {
+    let input = document.getElementById("recoverInput").value.trim();
+
+    if (!input) {
+        alert("❌ Please enter your email or phone number.");
+        return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Check if user exists (match email OR phone)
+    let foundUser = users.find(u => u.email === input || u.phone === input);
+
+    if (!foundUser) {
+        alert("❌ Account not found. Try again.");
+        return;
+    }
+
+    // Store selected user so change-password page knows who to update
+    localStorage.setItem("recoverUser", foundUser.email);
+
+    alert("✅ Account found! Redirecting...");
+    window.location.href = "change-password.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <!-- CLICKABLE AVATAR → GO TO PROFILE PAGE -->
+      <a href="profile.html">
+        <img src="eren.jpg" class="avatar" alt="User">
+      </a>
+
+      <a href="#">Dashboard</a>
+      <a href="calculator.html" class="nav-link">Calculator</a>
+      <a href="#">History</a>
+      
+      
+    </div>
+  </nav>
+
+
+  <!-- WELCOME BANNER -->
+  <section class="welcome-banner">
+    <h1>Welcome back! <span>CyrusPenaflor</span></h1>
+    <img src="eren.jpg" class="banner-avatar">
+  </section>
+
+
+  <!-- TOP STATS -->
+  <section class="stats-row">
+    <div class="stat-box">
+      <h2>12</h2>
+      <p>Total Records</p>
+    </div>
+
+    <div class="stat-box">
+      <h2>1,890 kWh</h2>
+      <p>Total Consumption</p>
+    </div>
+
+    <div class="stat-box">
+      <h2>₱21,345</h2>
+      <p>Total Cost</p>
+    </div>
+
+    <div class="stat-box">
+      <h2>₱2,450</h2>
+      <p>This Month</p>
+    </div>
+  </section>
+
+
+  <!-- 3 FEATURE CARDS -->
+  <section class="cards-row">
+
+    <div class="card">
+      <img src="calculator_12696043.png" class="card-icon">
+      <h3>Calculator</h3>
+      <p>Calculate your electricity bill with instant result and detailed breakdowns.</p>
+    </div>
+
+    <div class="card">
+      <img src="analytics.png" class="card-icon">
+      <h3>Result</h3>
+      <p>View your complete billing history with advance filtering and analytics.</p>
+    </div>
+
+    <!-- PROFILE CARD — CLICK → GO TO PROFILE PAGE -->
+    <a href="profile.html" class="card">
+      <img src="eren.jpg" class="card-icon">
+      <h3>Profile</h3>
+      <p>Edit your account information and consumption preferences.</p>
+    </a>
+
+  </section>
+
+
+  <!-- BILLING HISTORY -->
+  <section class="history-section">
+    <div class="history-header">
+      <h3>Recent Billing History</h3>
+      <button class="view-btn">View All</button>
+    </div>
+
+    <div class="history-item">
+      <div>
+        <h4>September 2025</h4>
+        <p>188 kWh • ₱10.40/kWh</p>
+      </div>
+      <span class="amount">₱1,955.20</span>
+    </div>
+
+    <div class="history-item">
+      <div>
+        <h4>August 2025</h4>
+        <p>200 kWh • ₱13.01/kWh</p>
+      </div>
+      <span class="amount">₱2,602.00</span>
+    </div>
+  </section>
+
+  <script>
+    // Load updated name
+    const storedName = localStorage.getItem("username");
+    if (storedName) {
+        document.getElementById("welcomeName").textContent = storedName;
+    }
+
+    // Load updated profile image
+    const storedImage = localStorage.getItem("profileImage");
+    if (storedImage) {
+        document.getElementById("profilePic").src = storedImage;
+    }
+</script>
+
+
+</body>
+</html>

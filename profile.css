@@ -1,0 +1,99 @@
+/* GENERAL */
+body {
+    margin: 0;
+    font-family: Poppins, sans-serif;
+    background-color: #dcc8c8;
+}
+
+/* NAVBAR */
+.navbar {
+    background: #f8d27a;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-weight: 600;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: black;
+}
+
+.navbar a.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.navbar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* PROFILE SECTION */
+.profile-container {
+    padding: 40px 60px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.profile-header img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.profile-name {
+    font-size: 35px;
+    color: white;
+    font-weight: 700;
+}
+
+.profile-actions {
+    margin-top: 10px;
+}
+
+.profile-actions a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+/* INFO CARD */
+.info-box {
+    background: #e1dddd;
+    padding: 30px;
+    width: 80%;
+    border-radius: 12px;
+    margin-top: 40px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.info-item i {
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+/* LOGOUT BUTTON */
+.logout {
+    margin: 30px 0 0 60px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}

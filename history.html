@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>History</title>
+<link rel="stylesheet" href="history.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <img src="eren.jpg" class="profile-img">
+    <a href="dashboard.html" class="nav-item">Dashboard</a>
+    <a href="calculator.html" class="nav-item">Calculator</a>
+    <a href="history.html" class="nav-item active">History</a>
+</nav>
+
+<!-- BACK BUTTON -->
+<a href="dashboard.html" class="back-btn">←</a>
+
+<!-- TITLE -->
+<h2 class="table-title">Electricity Usage Record</h2>
+
+<!-- HEADER ROW -->
+<div class="header-row">
+    <span>Date</span>
+    <span>Hours</span>
+    <span>Power (kWh)</span>
+    <span>Cost per kWh</span>
+    <span>Total (₱)</span>
+</div>
+
+<!-- AUTO GENERATED HISTORY ROWS -->
+<div id="history-rows"></div>
+
+
+<script>
+window.onload = function () {
+    let history = JSON.parse(localStorage.getItem("history")) || [];
+    let container = document.getElementById("history-rows");
+
+    history.forEach(item => {
+        let row = document.createElement("div");
+        row.classList.add("table-row");
+
+        row.innerHTML = `
+            <span>${item.date}</span>
+            <span>${item.hours}</span>
+            <span>${item.power} kWh</span>
+            <span>${item.cost}</span>
+            <span>₱${item.total}</span>
+        `;
+
+        container.appendChild(row);
+    });
+};
+</script>
+
+</body>
+</html>

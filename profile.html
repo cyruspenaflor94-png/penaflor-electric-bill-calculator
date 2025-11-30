@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <img src="eren.jpg" class="nav-img" alt="Profile">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="history.html">History</a>
+    <a class="active" href="profile.html">Profile</a>
+</div>
+
+<!-- PROFILE SECTION -->
+<div class="profile-container">
+
+    <div class="profile-header">
+        <img src="eren.jpg" alt="User Photo" class="profile-photo">
+
+        <div>
+            <div class="profile-name" id="profileName">Cyrus Penaflor</div>
+
+            <div class="profile-actions">
+                <a href="edit-profile.html">Edit Profile</a>
+                <a href="change-password.html">Change Password</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- INFO BOX -->
+    <div class="info-box">
+
+        <div class="info-item">
+            <i>📧</i>
+            <span><b>Email:</b> <span id="profileEmail">cyrussamp221@gmail.com</span></span>
+        </div>
+
+        <div class="info-item">
+            <i>📞</i>
+            <span><b>Phone Number:</b> <span id="profilePhone">09498775004</span></span>
+        </div>
+
+        <div class="info-item">
+            <i>📍</i>
+            <span><b>Address:</b> <span id="profileAddress">Prk. Ilang-Ilang, Brgy. Acmac, Iligan City</span></span>
+        </div>
+    </div>
+
+    <!-- LOGOUT -->
+    <a class="logout" href="login.html">🔌 Log out</a>
+
+</div>
+
+<script>
+    // Load saved info from localStorage
+    document.getElementById("profileName").textContent = localStorage.getItem("name") || "Cyrus Penaflor";
+    document.getElementById("profileEmail").textContent = localStorage.getItem("email") || "cyrussamp221@gmail.com";
+    document.getElementById("profilePhone").textContent = localStorage.getItem("phone") || "09498775004";
+    document.getElementById("profileAddress").textContent = localStorage.getItem("address") || "Prk. Ilang-Ilang, Brgy. Acmac, Iligan City";
+</script>
+<script>
+    // Set default password ONCE if not yet set
+    if (!localStorage.getItem("password")) {
+        localStorage.setItem("password", "123456"); // default password
+    }
+</script>
+
+
+</body>
+</html>

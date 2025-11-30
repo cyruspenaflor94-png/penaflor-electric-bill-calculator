@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Signup</title>
+<link rel="stylesheet" href="signup.css">
+</head>
+
+<body>
+
+<div class="signup-container">
+
+    <!-- Left side form -->
+    <div class="signup-form">
+        <h2>Name</h2>
+        <input type="text" id="name" placeholder="Enter your name">
+
+        <h2>Email address</h2>
+        <input type="email" id="email" placeholder="Enter your email">
+
+        <h2>Password</h2>
+        <input type="password" id="password" placeholder="Enter your password">
+
+        <div class="terms">
+            <label>
+                <input type="checkbox" id="terms">
+                I agree to the <a href="#">terms & policy</a>
+            </label>
+        </div>
+
+        <button class="signup-btn" onclick="signup()">Signup</button>
+
+        <p class="signin-text">Have an account? <a href="login.html">Sign In</a></p>
+    </div>
+
+    <!-- Right side image -->
+    <img src="unnamed.png" class="side-image">
+</div>
+
+
+<script>
+function signup() {
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value.trim();
+    let terms = document.getElementById("terms").checked;
+
+    // Check if fields are empty
+    if (!name || !email || !password) {
+        alert("❌ Please fill out all fields");
+        return;
+    }
+
+    // Check if terms are checked
+    if (!terms) {
+        alert("❌ You must agree to the terms and policy");
+        return;
+    }
+
+    // Load existing users or create empty array
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Check if email exists
+    let emailExists = users.some(user => user.email === email);
+
+    if (emailExists) {
+        alert("❌ Email already registered. Try logging in instead.");
+        return;
+    }
+
+    // Save new user
+    users.push({
+        name: name,
+        email: email,
+        password: password
+    });
+
+    localStorage.setItem("users", JSON.stringify(users));
+
+    alert("✅ Signup successful!");
+    window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

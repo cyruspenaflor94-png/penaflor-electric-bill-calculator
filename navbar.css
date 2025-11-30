@@ -1,0 +1,42 @@
+/* NAVBAR CONTAINER */
+.navbar {
+    width: 100%;
+    background-color: #f6c985;
+    padding: 12px 40px;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    box-sizing: border-box;
+}
+
+/* PROFILE IMAGE */
+.profile-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.profile-img:hover {
+    opacity: 0.8;
+}
+
+/* NAVIGATION LINKS */
+.navbar nav {
+    display: flex;
+    gap: 80px;
+}
+
+.navbar a {
+    font-size: 22px;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    transition: 0.2s;
+}
+
+.navbar a:hover {
+    opacity: 0.7;
+}

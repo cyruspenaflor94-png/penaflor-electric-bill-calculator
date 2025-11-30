@@ -1,0 +1,87 @@
+body {
+    background-color: #d7c0c4;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+/* Navigation bar */
+.navbar {
+    background-color: #f6c879;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.profile-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.nav-item {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.nav-item.active {
+    color: #3b7f8b;
+}
+
+/* Back Button */
+.back-btn {
+    font-size: 40px;
+    color: white;
+    margin: 20px 40px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Calculator Card */
+.calc-container {
+    width: 50%;
+    background: #f5e8e9;
+    padding: 40px;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+
+.calc-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    border: none;
+    background: #d2c9cc;
+    margin-bottom: 20px;
+}
+
+button {
+    width: 160px;
+    padding: 12px;
+    background-color: #2b8a92;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    display: block;
+    margin: auto;
+    font-size: 16px;
+}
+
+#result {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
