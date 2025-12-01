@@ -85,3 +85,52 @@ button {
     margin-top: 20px;
     font-weight: bold;
 }
+
+/* -------------------------------------------------------- */
+/* 📱 MOBILE RESPONSIVE STYLES */
+/* -------------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+    /* Fix navbar layout */
+    .navbar {
+        padding: 15px 20px;
+        gap: 15px;
+    }
+
+    .profile-img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .nav-item {
+        font-size: 14px;
+    }
+
+    .back-btn {
+        font-size: 30px;
+        margin: 15px 20px;
+    }
+
+    /* Calculator becomes full width on phones */
+    .calc-container {
+        width: 90%;
+        padding: 20px;
+        margin-top: 15px;
+    }
+
+    .calc-container h2 {
+        font-size: 20px;
+    }
+
+    input {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    button {
+        width: 130px;
+        padding: 10px;
+        font-size: 14px;
+    }
+}

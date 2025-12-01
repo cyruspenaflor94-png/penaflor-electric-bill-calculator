@@ -55,7 +55,7 @@ body {
     font-weight: 700;
 }
 
-.profile-actions {
+profile-actions {
     margin-top: 10px;
 }
 
@@ -91,9 +91,75 @@ body {
 .logout {
     margin: 30px 0 0 60px;
     display: flex;
-    align-items: center;
+   	align-items: center;
     gap: 8px;
     text-decoration: none;
     color: black;
     font-weight: 600;
+}
+
+/* ----------------------------------------------------
+   📱 MOBILE RESPONSIVE STYLES
+----------------------------------------------------- */
+@media (max-width: 600px) {
+
+    /* NAVBAR */
+    .navbar {
+        padding: 10px 15px;
+        gap: 10px;
+    }
+
+    .navbar img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .navbar a {
+        font-size: 14px;
+    }
+
+    /* PROFILE SECTION */
+    .profile-container {
+        padding: 20px;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-header img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-name {
+        font-size: 24px;
+    }
+
+    .profile-actions a {
+        font-size: 14px;
+    }
+
+    /* INFO BOX */
+    .info-box {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .info-item {
+        padding: 10px 0;
+    }
+
+    .info-item i {
+        font-size: 18px;
+        margin-right: 10px;
+    }
+
+    /* LOGOUT */
+    .logout {
+        margin-left: 0;
+        justify-content: center;
+        font-size: 14px;
+    }
 }

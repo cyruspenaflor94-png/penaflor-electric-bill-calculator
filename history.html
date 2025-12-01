@@ -46,15 +46,14 @@ window.onload = function () {
         let row = document.createElement("div");
         row.classList.add("table-row");
 
-        row.innerHTML = `
-            <span>${item.date}</span>
-            <span>${item.hours}</span>
-            <span>${item.power} kWh</span>
-            <span>${item.cost}</span>
-            <span>₱${item.total}</span>
-        `;
+     <div class="header-row">
+    <div>Date</div>
+    <div>Hours</div>
+    <div>Power (kWh)</div>
+    <div>Cost per kWh</div>
+    <div>Total (₱)</div>
+</div>
 
-        container.appendChild(row);
     });
 };
 </script>
