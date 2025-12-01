@@ -26,57 +26,19 @@
     <h2>Calculate Your Electricity Bill</h2>
 
     <label>Hours per day</label>
-    <input type="number" id="hours" placeholder="Enter hours used">
+    <input type="number" placeholder="Enter hours used">
 
     <label>Power Consumption (kWh)</label>
-    <input type="number" id="power" placeholder="Enter power consumption">
+    <input type="number" placeholder="Enter power consumption">
 
     <label>Cost per kWh (₱)</label>
-    <input type="number" id="cost" placeholder="Enter cost">
+    <input type="number" placeholder="Enter cost">
 
-    <button onclick="calculateBill()">Calculate Bill</button>
+    <!-- Removed onclick -->
+    <button>Calculate Bill</button>
 
     <p id="result"></p>
 </div>
-
-<<script>
-function calculateBill() {
-    let hours = parseFloat(document.getElementById("hours").value);
-    let power = parseFloat(document.getElementById("power").value);
-    let cost = parseFloat(document.getElementById("cost").value);
-
-    if (isNaN(hours) || isNaN(power) || isNaN(cost)) {
-        document.getElementById("result").innerText = "Please fill out all fields.";
-        return;
-    }
-
-    let total = hours * power * cost;
-    let finalResult = "Estimated Daily Cost: ₱" + total.toFixed(2);
-
-    // Show result on the page
-    document.getElementById("result").innerText = finalResult;
-
-    // -------------------------------
-    // SAVE TO HISTORY (localStorage)
-    // -------------------------------
-    let record = {
-        hours: hours,
-        power: power,
-        cost: cost,
-        total: total.toFixed(2),
-        date: new Date().toLocaleString()
-    };
-
-    // Get existing history or create empty list
-    let history = JSON.parse(localStorage.getItem("history")) || [];
-
-    // Add new record
-    history.push(record);
-
-    // Save back to localStorage
-    localStorage.setItem("history", JSON.stringify(history));
-}
-</script>
 
 </body>
 </html>

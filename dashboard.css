@@ -12,6 +12,7 @@ body {
   padding: 15px 40px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .nav-left {
@@ -137,7 +138,125 @@ body {
   font-weight: 700;
   font-size: 18px;
 }
-/* image 91 */
 
 
+/* --------------------------------------------------
+   ✅ MOBILE RESPONSIVE LAYOUT (max-width: 768px)
+-------------------------------------------------- */
+@media (max-width: 768px) {
 
+  /* NAVBAR */
+  .navbar {
+    padding: 12px 20px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-left a {
+    font-size: 16px;
+  }
+
+  .avatar {
+    width: 45px;
+    height: 45px;
+  }
+
+  /* WELCOME BANNER */
+  .welcome-banner {
+    margin: 20px;
+    padding: 30px;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .welcome-banner h1 {
+    font-size: 28px;
+  }
+
+  .banner-avatar {
+    width: 70px;
+    height: 70px;
+  }
+
+  /* STATS: STACKED */
+  .stats-row {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+
+  .stat-box {
+    padding: 20px;
+  }
+
+  /* CARDS: STACKED */
+  .cards-row {
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  .card-icon {
+    width: 50px;
+  }
+
+  /* HISTORY */
+  .history-section {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .history-header h2 {
+    font-size: 20px;
+  }
+
+  .view-btn {
+    padding: 8px 18px;
+  }
+
+  .history-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .amount {
+    font-size: 16px;
+  }
+}
+
+
+/* --------------------------------------------------
+   ✅ SMALL MOBILE (max-width: 480px)
+-------------------------------------------------- */
+@media (max-width: 480px) {
+
+  /* navbar links smaller */
+  .navbar a {
+    font-size: 15px;
+  }
+
+  /* logo/avatar smaller */
+  .avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* banner */
+  .welcome-banner {
+    padding: 25px;
+  }
+
+  .welcome-banner h1 {
+    font-size: 24px;
+  }
+
+  /* cards */
+  .card {
+    padding: 22px;
+  }
+
+  /* history items */
+  .history-item {
+    padding: 15px;
+  }
+}

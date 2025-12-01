@@ -32,6 +32,7 @@ body {
     border-radius: 10px;
     border: 2px solid #777;
     margin-bottom: 18px;
+    box-sizing: border-box;
 }
 
 /* Custom styled checkbox */
@@ -47,6 +48,7 @@ input[type="checkbox"] {
     position: relative;
     top: 3px;
     margin-right: 10px;
+    flex-shrink: 0;
 }
 
 input[type="checkbox"]:checked::after {
@@ -62,6 +64,8 @@ input[type="checkbox"]:checked::after {
     font-size: 20px;
     margin-top: 10px;
     margin-bottom: 25px;
+    display: flex;
+    align-items: flex-start;
 }
 
 .terms a {
@@ -81,6 +85,11 @@ input[type="checkbox"]:checked::after {
     margin-top: 10px;
     cursor: pointer;
     display: block;
+    transition: background 0.3s;
+}
+
+.signup-btn:hover {
+    background: #2d8080;
 }
 
 .signin-text {
@@ -91,10 +100,82 @@ input[type="checkbox"]:checked::after {
 .signin-text a {
     color: #1e4bff;
     font-weight: 600;
+    text-decoration: none;
+}
+
+.signin-text a:hover {
+    text-decoration: underline;
 }
 
 .side-image {
     width: 330px;
     height: auto;
     margin-right: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Mobile devices */
+@media (max-width: 480px) {
+    .signup-container {
+        flex-direction: column;
+        padding: 20px;
+        align-items: center;
+    }
+
+    .side-image {
+        width: 100px;
+        height: 100px;
+        margin: 0 0 30px 0;
+        order: -1;
+    }
+
+    .signup-form {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .signup-form h2 {
+        font-size: 22px;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+
+    .signup-form input[type="text"],
+    .signup-form input[type="email"],
+    .signup-form input[type="password"] {
+        padding: 14px;
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+    input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        margin-top: 2px;
+    }
+
+    input[type="checkbox"]:checked::after {
+        font-size: 14px;
+        top: -2px;
+    }
+
+    .terms {
+        font-size: 14px;
+        margin-bottom: 20px;
+        line-height: 1.4;
+    }
+
+    .signup-btn {
+        width: 100%;
+        padding: 14px;
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    .signin-text {
+        font-size: 14px;
+        text-align: center;
+        margin-top: 15px;
+    }
 }
