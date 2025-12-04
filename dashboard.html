@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
   <link rel="stylesheet" href="dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.config.js"></script>
 </head>
 <body>
 
@@ -27,7 +29,7 @@
 
   <!-- WELCOME BANNER -->
   <section class="welcome-banner">
-    <h1>Welcome back! <span>CyrusPenaflor</span></h1>
+    <h1>Welcome back! <span id="userName">Loading...</span></h1>
     <img src="eren.jpg" class="banner-avatar">
   </section>
 
@@ -106,16 +108,43 @@
   </section>
 
   <script>
-    // Load updated name
-    const storedName = localStorage.getItem("username");
-    if (storedName) {
-        document.getElementById("welcomeName").textContent = storedName;
-    }
+    // Initialize Supabase and load dashboard data
+    document.addEventListener('DOMContentLoaded', async function() {
+        initializeSupabase();
+        
+        // Check authentication
+        const user = await getCurrentUser();
+        if (!user) {
+            window.location.href = 'login.html';
+            return;
+        }
 
-    // Load updated profile image
-    const storedImage = localStorage.getItem("profileImage");
-    if (storedImage) {
-        document.getElementById("profilePic").src = storedImage;
+        // Load user's name
+        const userEmail = user.email || 'User';
+        const userName = user.user_metadata?.full_name || userEmail.split('@')[0];
+        document.getElementById('userName').textContent = userName;
+
+        // Load calculations stats
+        loadDashboardStats();
+    });
+
+    async function loadDashboardStats() {
+        const calculations = await fetchCalculations();
+        
+        if (calculations.length === 0) {
+            document.querySelector('.stats-row').innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">No calculations yet. Start calculating!</p>';
+            return;
+        }
+
+        const totalRecords = calculations.length;
+        const totalConsumption = calculations.reduce((sum, calc) => sum + parseFloat(calc.power), 0);
+        const totalCost = calculations.reduce((sum, calc) => sum + parseFloat(calc.total_cost), 0);
+
+        // Update stats
+        const statBoxes = document.querySelectorAll('.stat-box h2');
+        statBoxes[0].textContent = totalRecords;
+        statBoxes[1].textContent = totalConsumption.toFixed(1) + ' kWh';
+        statBoxes[2].textContent = '₱' + totalCost.toFixed(2);
     }
 </script>
 

@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Electricity Calculator</title>
 <link rel="stylesheet" href="calculator.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.config.js"></script>
 </head>
 
 <body>
@@ -26,19 +28,76 @@
     <h2>Calculate Your Electricity Bill</h2>
 
     <label>Hours per day</label>
-    <input type="number" placeholder="Enter hours used">
+    <input type="number" id="hours" placeholder="Enter hours used">
 
     <label>Power Consumption (kWh)</label>
-    <input type="number" placeholder="Enter power consumption">
+    <input type="number" id="power" placeholder="Enter power consumption">
 
     <label>Cost per kWh (₱)</label>
-    <input type="number" placeholder="Enter cost">
+    <input type="number" id="cost" placeholder="Enter cost">
 
-    <!-- Removed onclick -->
-    <button>Calculate Bill</button>
+    <button onclick="calculateBill()">Calculate Bill</button>
 
     <p id="result"></p>
 </div>
+
+<script>
+// Initialize Supabase on page load
+document.addEventListener('DOMContentLoaded', async function() {
+    initializeSupabase();
+    
+    // Check authentication
+    const user = await getCurrentUser();
+    if (!user) {
+        window.location.href = 'login.html';
+        return;
+    }
+});
+
+async function calculateBill() {
+    // Check if user is authenticated
+    const user = await getCurrentUser();
+    if (!user) {
+        alert("You must be logged in to calculate bills");
+        window.location.href = 'login.html';
+        return;
+    }
+
+    let hours = parseFloat(document.getElementById("hours").value);
+    let power = parseFloat(document.getElementById("power").value);
+    let cost = parseFloat(document.getElementById("cost").value);
+
+    if (isNaN(hours) || isNaN(power) || isNaN(cost)) {
+        document.getElementById("result").innerText = "Please fill out all fields.";
+        return;
+    }
+
+    if (hours <= 0 || power <= 0 || cost <= 0) {
+        document.getElementById("result").innerText = "Please enter positive numbers only.";
+        return;
+    }
+
+    let total = hours * power * cost;
+    let finalResult = "Estimated Daily Cost: ₱" + total.toFixed(2);
+
+    // Show result on the page
+    document.getElementById("result").innerText = finalResult;
+
+    // Save to Supabase database
+    const success = await saveCalculation(hours, power, cost, total.toFixed(2));
+    
+    if (success) {
+        alert("✅ Calculation saved successfully!");
+        // Clear the form
+        document.getElementById("hours").value = '';
+        document.getElementById("power").value = '';
+        document.getElementById("cost").value = '';
+        document.getElementById("result").innerText = '';
+    } else {
+        alert("❌ Failed to save calculation. Please try again.");
+    }
+}
+</script>
 
 </body>
 </html>

@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Signup</title>
 <link rel="stylesheet" href="signup.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.config.js"></script>
 </head>
 
 <body>
@@ -29,7 +31,7 @@
             </label>
         </div>
 
-        <button class="signup-btn">Signup</button>
+        <button class="signup-btn" onclick="signup()">Signup</button>
 
         <p class="signin-text">Have an account? <a href="login.html">Sign In</a></p>
     </div>
@@ -37,6 +39,52 @@
     <!-- Right side image -->
     <img src="unnamed.png" class="side-image">
 </div>
+
+
+<script>
+// Initialize Supabase on page load
+document.addEventListener('DOMContentLoaded', function() {
+    initializeSupabase();
+});
+
+async function signup() {
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value.trim();
+    let terms = document.getElementById("terms").checked;
+
+    // Validate inputs
+    if (!name || !email || !password) {
+        alert("❌ Please fill out all fields");
+        return;
+    }
+
+    if (!email.includes("@")) {
+        alert("❌ Please enter a valid email address");
+        return;
+    }
+
+    if (password.length < 6) {
+        alert("❌ Password must be at least 6 characters");
+        return;
+    }
+
+    if (!terms) {
+        alert("❌ You must agree to the terms and policy");
+        return;
+    }
+
+    // Attempt to sign up with Supabase
+    const result = await signUp(email, password, name);
+
+    if (result.success) {
+        alert("✅ Signup successful! Please check your email to verify your account.");
+        window.location.href = "login.html";
+    } else {
+        alert("❌ " + result.error);
+    }
+}
+</script>
 
 </body>
 </html>

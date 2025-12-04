@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <link rel="stylesheet" href="profile.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.config.js"></script>
 </head>
 <body>
 
@@ -24,7 +26,7 @@
         <img src="eren.jpg" alt="User Photo" class="profile-photo">
 
         <div>
-            <div class="profile-name" id="profileName">Cyrus Penaflor</div>
+            <div class="profile-name" id="profileName">Loading...</div>
 
             <div class="profile-actions">
                 <a href="edit-profile.html">Edit Profile</a>
@@ -53,22 +55,45 @@
     </div>
 
     <!-- LOGOUT -->
-    <a class="logout" href="login.html">🔌 Log out</a>
+    <a class="logout" href="#" onclick="handleLogout(); return false;">🔌 Log out</a>
 
 </div>
 
 <script>
-    // Load saved info from localStorage
-    document.getElementById("profileName").textContent = localStorage.getItem("name") || "Cyrus Penaflor";
-    document.getElementById("profileEmail").textContent = localStorage.getItem("email") || "cyrussamp221@gmail.com";
-    document.getElementById("profilePhone").textContent = localStorage.getItem("phone") || "09498775004";
-    document.getElementById("profileAddress").textContent = localStorage.getItem("address") || "Prk. Ilang-Ilang, Brgy. Acmac, Iligan City";
-</script>
-<script>
-    // Set default password ONCE if not yet set
-    if (!localStorage.getItem("password")) {
-        localStorage.setItem("password", "123456"); // default password
+// Initialize Supabase and load profile
+document.addEventListener('DOMContentLoaded', async function() {
+    initializeSupabase();
+    
+    // Check authentication
+    const user = await getCurrentUser();
+    if (!user) {
+        window.location.href = 'login.html';
+        return;
     }
+
+    // Load user profile information
+    loadProfile(user);
+});
+
+async function loadProfile(user) {
+    const userName = user.user_metadata?.full_name || user.email.split('@')[0];
+    const userEmail = user.email;
+
+    document.getElementById("profileName").textContent = userName;
+    document.getElementById("profileEmail").textContent = userEmail;
+    document.getElementById("profilePhone").textContent = user.user_metadata?.phone_number || "Not set";
+    document.getElementById("profileAddress").textContent = user.user_metadata?.address || "Not set";
+}
+
+async function handleLogout() {
+    const success = await signOut();
+    if (success) {
+        alert("✅ Logged out successfully!");
+        window.location.href = "login.html";
+    } else {
+        alert("❌ Failed to logout");
+    }
+}
 </script>
 
 

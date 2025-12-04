@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>History</title>
 <link rel="stylesheet" href="history.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.config.js"></script>
 </head>
 
 
@@ -38,24 +40,44 @@
 
 
 <script>
-window.onload = function () {
-    let history = JSON.parse(localStorage.getItem("history")) || [];
-    let container = document.getElementById("history-rows");
+// Initialize Supabase and load history on page load
+document.addEventListener('DOMContentLoaded', async function() {
+    initializeSupabase();
+    
+    // Check if user is authenticated
+    const user = await getCurrentUser();
+    if (!user) {
+        window.location.href = 'login.html';
+        return;
+    }
 
-    history.forEach(item => {
+    // Load and display calculations
+    loadHistory();
+});
+
+async function loadHistory() {
+    const calculations = await fetchCalculations();
+    const container = document.getElementById("history-rows");
+    container.innerHTML = ''; // Clear existing rows
+
+    if (calculations.length === 0) {
+        container.innerHTML = '<p style="text-align: center; padding: 20px; grid-column: 1 / -1;">No calculations found. Start by creating a new calculation!</p>';
+        return;
+    }
+
+    calculations.forEach(item => {
         let row = document.createElement("div");
         row.classList.add("table-row");
-
-     <div class="header-row">
-    <div>Date</div>
-    <div>Hours</div>
-    <div>Power (kWh)</div>
-    <div>Cost per kWh</div>
-    <div>Total (₱)</div>
-</div>
-
+        row.innerHTML = `
+            <div>${new Date(item.created_at).toLocaleDateString()}</div>
+            <div>${item.hours}</div>
+            <div>${item.power}</div>
+            <div>₱${item.cost_per_kwh.toFixed(2)}</div>
+            <div>₱${item.total_cost.toFixed(2)}</div>
+        `;
+        container.appendChild(row);
     });
-};
+}
 </script>
 
 </body>

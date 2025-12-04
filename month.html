@@ -1,0 +1,136 @@
+ <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Electric Bill Calculator</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    background: #f4f6fb;
+                    margin: 0;
+                    padding: 0;
+                }
+                h1 {
+                    text-align: center;
+                    margin-top: 40px;
+                    color: #2d3e50;
+                }
+                form {
+                    background: #fff;
+                    max-width: 350px;
+                    margin: 40px auto;
+                    padding: 30px 25px;
+                    border-radius: 10px;
+                    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.1);
+                }
+                label {
+                    display: block;
+                    margin-bottom: 8px;
+                    color: #34495e;
+                    font-weight: bold;
+                }
+                input[type="number"],[type="text"] {
+                    width: 100%;
+                    padding: 8px;
+                    margin-bottom: 18px;
+                    border: 1px solid #bdc3c7;
+                    border-radius: 5px;
+                    font-size: 16px;
+                }
+                button {
+                    width: 100%;
+                    padding: 10px;
+                    background: #06c4ca;
+                    color: #fff;
+                    border: none;
+                    border-radius: 5px;
+                    font-size: 16px;
+                    cursor: pointer;
+                    transition: background 0.2s;
+                }
+                button:hover {
+                    background: #3498db;
+                }
+                #result {
+                    max-width: 350px;
+                    margin: 20px auto;
+                    padding: 15px;
+                    background: #eaf6ff;
+                    border-radius: 8px;
+                    text-align: center;
+                    font-size: 18px;
+                    color: #2d3e50;
+                    box-shadow: 0 1px 4px rgba(44, 62, 80, 0.08);
+                }
+                
+    table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 8px;
+    text-align: center;
+    }
+    table {
+    margin-top: 20px;
+    width: 100%;
+    }
+
+            </style>
+        </head>
+        <body>
+            <h1>Electric Bill Calculator</h1>
+
+            <form onsubmit="event.preventDefault();">
+
+                <label>Month</label>
+                <input id="Month" type="text" /><br />
+
+                <label>Power Consumption</label>
+                <input id="power_consumption" type="number" /><br />
+
+                <label>Cost per kwh</label>
+                <input id="cost_per_kwh" type="number" />
+
+                <br />
+                <button id="btn_calculate">Calculate</button>
+            </form>
+
+            <div id="result"></div>
+
+                        <table id="tableRow">
+                        <tr>
+                            <td>Month</td>
+                            <td>Power Consumption</td>
+                            <td>Cost Per Kwh</td>
+                            <td>Result</td>
+                        </tr>
+                </table>
+
+            <script>
+                btn_calculate.addEventListener("click", function () {
+                    let Month = document.getElementById("Month");
+                    let power_consumption =
+                        document.getElementById("power_consumption");
+                    let cost_per_kwh = document.getElementById("cost_per_kwh");
+                    let btn_calculate = document.getElementById("btn_calculate");
+                    let result = document.getElementById("result");
+                    let result_value = cost_per_kwh.value * power_consumption.value;
+                    result.innerHTML = `Your electric bill is: ₱ ${result_value.toFixed(
+                        2
+                    )}`;
+                    var tableRow = document.getElementById("tableRow");
+                    var newRow = tableRow.insertRow();
+    
+                    var month = newRow.insertCell(0);
+                    var Power_consumption = newRow.insertCell(1);
+                    var Cost = newRow.insertCell(2);
+                    var Result = newRow.insertCell(3);
+        
+                    month.innerHTML = Month.value;
+                    Power_consumption.innerHTML = power_consumption.value;
+                    Cost.innerHTML = cost_per_kwh.value;
+                    Result.innerHTML = result_value.toFixed(2);
+                });
+            </script>
+        </body>
+    </html>

@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login</title>
 <link rel="stylesheet" href="login.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.config.js"></script>
 </head>
 
 <body>
@@ -15,14 +17,16 @@
         <h1>Welcome Back!</h1>
 
         <label class="label">Email address</label>
-        <input type="email" placeholder="Enter your email" class="input">
+        <input type="email" id="email" placeholder="Enter your email" class="input">
 
         <div class="password-row">
             <label class="label">Password</label>
+
+            <!-- ✅ only keep this one -->
             <a href="recovery.html" class="forgot">forgot password</a>
         </div>
 
-        <input type="password" placeholder="Enter your password" class="input">
+        <input type="password" id="password" placeholder="Enter your password" class="input">
 
         <div class="remember">
             <label>
@@ -31,8 +35,7 @@
             </label>
         </div>
 
-        <!-- ❌ onclick removed -->
-        <a href="dashboard.html" class="login-btn">Log In</a>
+<button class="login-btn" onclick="handleLogin()">Log In</button>
 
         <p class="signup-link">
             Don’t have an account? <a href="signup.html">Sign Up</a>
@@ -42,6 +45,39 @@
     <img src="unnamed.png" class="side-image"> 
 
 </div>
+
+<script>
+// Initialize Supabase on page load
+document.addEventListener('DOMContentLoaded', function() {
+    initializeSupabase();
+});
+
+async function handleLogin() {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    // Validate inputs
+    if (!email || !password) {
+        alert("❌ Please fill out all fields");
+        return;
+    }
+
+    if (!email.includes("@")) {
+        alert("❌ Please enter a valid email address");
+        return;
+    }
+
+    // Attempt to sign in
+    const result = await signIn(email, password);
+
+    if (result.success) {
+        alert("✅ Login successful!");
+        window.location.href = "dashboard.html";
+    } else {
+        alert("❌ " + result.error);
+    }
+}
+</script>
 
 </body>
 </html>
